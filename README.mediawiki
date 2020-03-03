@@ -14,7 +14,9 @@ This program has only been tested on Ubuntu 18.04 with Swift version 5.1.4, thou
 
 ===Installation===
 
-To run this program, it must be built with the following command:
+To be able to install this application, download the zip file or clone this repository.
+
+To run this program, it must be built with the following command in the unarchive or cloned directory:
 
 <pre>
 swift build
