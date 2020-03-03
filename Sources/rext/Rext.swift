@@ -83,6 +83,8 @@ struct Rext: ParsableCommand {
 
     // function that is run when command is called
     func run() {
-        replace(extension: ext, with: newExtension, in: directory, recursive: recursive)
+        if !ext.iSEmpty && !newExtension.isEmpty {
+            replace(extension: ext, with: newExtension, in: directory, recursive: recursive)
+        }        
     }
 }
