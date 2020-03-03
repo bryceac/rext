@@ -16,47 +16,9 @@ struct Rext: ParsableCommand {
     
     // calculated property, to generate directory path
     var directory: URL {
-        let FILE_MANAGER = FileManager.default
-        var baseDirectory: URL?
-        var folder: URL!
-
-        // determine if directory contain relative shorthands and execute code depending on results
-        switch dir {
-            case let str where str.contains("~"):
-                let HOME_DIRECTORY = FILE_MANAGER.homeDirectoryForCurrentUser
-                baseDirectory = HOME_DIRECTORY
-
-                // determine if subdirectory is specified, by checking for slashes
-                if dir.contains("/") {
-                    let DIRECTORY_COMPONENTS = dir.components(separatedBy:"/")
-                    folder = baseDirectory!
-
-                    // create URL object that directs to specified path.
-                    for pathComponent in DIRECTORY_COMPONENTS {
-                        guard pathComponent != DIRECTORY_COMPONENTS.first! else { continue }
-
-                        folder = folder.appendingPathComponent(pathComponent)
-                    }
-                }
-            case let str where str.contains("."):
-                let CURRENT_DIRECTORY = URL(string: FILE_MANAGER.currentDirectoryPath)
-                baseDirectory = CURRENT_DIRECTORY
-
-                if dir.contains("/") {
-                    let DIRECTORY_COMPONENTS = dir.components(separatedBy:"/")
-                    folder = baseDirectory!
-                    
-                    for pathComponent in DIRECTORY_COMPONENTS {
-                        guard pathComponent != DIRECTORY_COMPONENTS.first! else { continue }
-
-                        folder = folder.appendingPathComponent(pathComponent)
-                    }
-                }
-            default: ()
-        }
-
-        // return specified path
-        return folder
+        
+        // return specified path, subsituting tilde for User directory
+        return URL(fileURLWithPath: dir.expandingTildeInPath)
     } // end calculated property
 
     // the replace function move files with a particular extension to the new extension
