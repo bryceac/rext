@@ -37,12 +37,12 @@ directory can be specified with the <strong>-d</strong> flag and whether it work
 Everything can be specified at once like this:
 
 <pre>
-rext -deor "/path/to/directory" php txt true
+rext -deor "/path/to/directory" php txt
 </pre>
 
 This will go through the specified directory and all subdirectories and do the same renaming job as above. Quotes must be present around the the directory path, as I have not gotten it to work otherwise, but both '''~''' and '''.''' shorthands are supported, though I do not think '''..''' will work.
 
-If you used the usual '''-h''' or '''--help''' flags, you can get a brief overview when needed.
+If you use the usual '''-h''' or '''--help''' flags, you can get a brief overview when needed.
 
 ===Other===
 
