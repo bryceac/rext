@@ -6,11 +6,11 @@ struct Rext: ParsableCommand {
     // give program an overview
     static let configuration = CommandConfiguration(abstract: "quickly renames all files with a specified extension with another specified extension")
     
-    // specify options, allowing use of short and long flags on each option
+    // specify options and flags, allowing use of short and long flags on each option and flag
     @Option(name: .shortAndLong, default: ".", help: "Specifies the directory to go through (must enclose in \"\", to be recognized).") var dir: String
     @Option(name: .shortAndLong, help: "Specifies the file extension to be replaced.") var ext: String
-    @Option(name: .shortAndLong, help: "Specifies the new file extension") var output: String
-    @Option(name: .shortAndLong, default: false, help: "determines whether or not subdirectories will be affected. Default is false, which only affects specified directory.") var recursive: Bool
+    @Option(name: .shortAndLong, help: "Specifies the new file extension.") var output: String
+    @Flag(name: .shortAndLong, help: "recursively change extensions.") var recursive: Bool
 
     
     // calculated property, to generate directory path
