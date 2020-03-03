@@ -6,6 +6,8 @@
 
 '''Author:''' Bryce C.
 
+'''License:''' see LICENSE
+
 ==Notes==
 
 This program has only been tested on Ubuntu 18.04 with Swift version 5.1.4, though it should work on any platform that can compile and run Swift, with Mac and Ubuntu working without troubles.
