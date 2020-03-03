@@ -11,6 +11,7 @@ struct Rext: ParsableCommand {
     @Option(name: .shortAndLong, help: "Specifies the file extension to be replaced.") var ext: String
     @Option(name: .shortAndLong, help: "Specifies the new file extension.") var output: String
     @Flag(name: .shortAndLong, help: "recursively change extensions.") var recursive: Bool
+    @Flag(name: .shortAndLong, help: "display details to user.") var verbose: Bool
 
     
     // calculated property, to generate directory path
@@ -77,6 +78,10 @@ struct Rext: ParsableCommand {
                 let FILE_NAME = item.deletingPathExtension().lastPathComponent
 
                 let NEW_URL = directory.appendingPathComponent(FILE_NAME).appendingPathExtension(newExt)
+                
+                if verbose {
+                    print("renaming \(item.path) to \(NEW_URL.path)")
+                }
 
                 // attempt to move file
                 do {
@@ -99,6 +104,10 @@ struct Rext: ParsableCommand {
                     let FILE_NAME = item.deletingPathExtension().lastPathComponent
 
                     let NEW_URL = directory.appendingPathComponent(FILE_NAME).appendingPathExtension(newExt)
+                    
+                    if verbose {
+                        print("renaming \(item.path) to \(NEW_URL.path)")
+                    }
 
                     do {
                         try FILE_MANAGER.moveItem(at: item, to: NEW_URL)
