@@ -29,7 +29,7 @@ A binary should then be available in the <strong>./build</strong> directory that
 To use the program, call it and tell it which extensions to look for and replace with like this:
 
 <pre>
-rext -eo php txt
+rext -en php txt
 </pre>
 
 That will go through the current directory and change any '''php''' extensions to '''txt'''.
@@ -39,7 +39,7 @@ directory can be specified with the <strong>-d</strong> flag and whether it work
 Everything can be specified at once like this:
 
 <pre>
-rext -deor "/path/to/directory" php txt
+rext -denr "/path/to/directory" php txt
 </pre>
 
 This will go through the specified directory and all subdirectories and do the same renaming job as above. Quotes must are not necessary around the the directory path, as of 3/2/2020, both '''~''' and '''.''' shorthands are supported, though I do not think '''..''' will work.
