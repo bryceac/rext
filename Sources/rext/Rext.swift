@@ -81,10 +81,20 @@ struct Rext: ParsableCommand {
         }
     } // end function
 
+    mutating func validate() throws {
+        guard !ext.isEmpty && !newExtension.isEmpty else {
+            if ext.isEmpty {
+                throw ValidationError("Please specify the extension to look for.")
+            } else if newExtension.isEmpty {
+                throw ValidationError("Please specify the desired extension.")
+            } else {
+                throw ValidationError("Please provide the sought extension and the desired extension.")
+            }
+        }
+    }
+
     // function that is run when command is called
     func run() {
-        if !ext.isEmpty && !newExtension.isEmpty {
-            replace(extension: ext, with: newExtension, in: directory, recursive: recursive)
-        }        
+        replace(extension: ext, with: newExtension, in: directory, recursive: recursive)        
     }
 }
