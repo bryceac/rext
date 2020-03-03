@@ -1,3 +1,47 @@
-# rext
+=rext=
 
-A description of this package.
+'''Description:''' Program that allows one to easily change the file extension of files within a specified directory.
+
+'''Version:''' 0.1
+
+'''Author:''' Bryce C.
+
+==Notes==
+
+This program has only been tested on Ubuntu 18.04 with Swift version 5.1.4, though it should work on any platform that can compile and run Swift, with Mac and Ubuntu working without troubles.
+
+===Installation===
+
+To run this program, it must be built with the following command:
+
+<pre>
+swift build
+</pre>
+
+A binary should then be available in the <strong>./build</strong> directory that can be moved into a location that is listed in your PATH environment variable.
+
+===Usage===
+
+To use the program, call it and tell it which extensions to look for and replace with like this:
+
+<pre>
+rext -eo php txt
+</pre>
+
+That will go through the current directory and change any '''php''' extensions to '''txt'''.
+
+directory can be specified with the <strong>-d</strong> flag and whether it work recursively or not can be set with the <strong>-r</strong> flag.
+
+Everything can be specified at once like this:
+
+<pre>
+rext -deor "/path/to/directory" php txt true
+</pre>
+
+This will go through the specified directory and all subdirectories and do the same renaming job as above. Quotes must be present around the the directory path, as I have not gotten it to work otherwise, but both '''~''' and '''.''' shorthands are supported, though I do not think '''..''' will work.
+
+If you used the usual '''-h''' or '''--help''' flags, you can get a brief overview when needed.
+
+===Other===
+
+This program uses Apple's <a href="https://github.com/apple/swift-argument-parser">ArgumentParser</a> to allow the argument flags and retrieve the proper values.
