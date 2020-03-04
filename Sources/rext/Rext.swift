@@ -24,10 +24,10 @@ struct Rext: ParsableCommand {
     // the replace function move files with a particular extension to the new extension
     func replace(extension ext: String?, with newExt: String?, in directory: URL, recursive: Bool = false) {
         guard let ext = ext, let newExt = newExt else {
-            print("Please provide both extension and new Extension")
+            print("Please provide both extension and new extension.\r\n\r\nTo find out how, issue command again with either -h or --help flags.")
             return
         }
-        
+
         let FILE_MANAGER = FileManager.default
 
         // attempt to grab list of files and folders
