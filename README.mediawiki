@@ -16,13 +16,13 @@ This program has only been tested on Ubuntu 18.04 with Swift version 5.1.4, thou
 
 To be able to install this application, download the zip file or clone this repository.
 
-To run this program, it must be built with the following command in the unarchived or cloned directory:
+In the cloned directory, issue the following command as root/superuser:
 
 <pre>
-swift build
+make install
 </pre>
 
-A binary should then be available in the <strong>./build</strong> directory that can be moved into a location that is listed in your PATH environment variable.
+The binary will be installed in /usr/local/bin and will be immediately available if your PATH environment variable includes that directory.
 
 ===Usage===
 
