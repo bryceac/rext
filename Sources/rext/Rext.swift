@@ -24,7 +24,7 @@ struct Rext: ParsableCommand {
     mutating func validate() throws {
         guard !ext.isEmpty && !newExtension.isEmpty else {
             if ext.isEmpty {
-                throw RunTimeError.missExtension
+                throw RunTimeError.missingExtension
             } else if newExtension.isEmpty {
                 throw RunTimeError.missingReplacement
             } else {
