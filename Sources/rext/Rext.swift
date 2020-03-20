@@ -34,7 +34,7 @@ struct Rext: ParsableCommand {
     }
 
     // the replace function move files with a particular extension to the new extension
-    func replace(extension ext: String?, with newExt: String?, in directory: URL, recursive: Bool = false) {
+    func replace(extension ext: String, with newExt: String, in directory: URL, recursive: Bool = false) {
         
         let FILE_MANAGER = FileManager.default
 
