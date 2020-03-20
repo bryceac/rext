@@ -8,8 +8,8 @@ struct Rext: ParsableCommand {
     
     // specify options and flags, allowing use of short and long flags on each option and flag
     @Option(name: .shortAndLong, default: ".", help: "Specifies the directory to go through.") var dir: String
-    @Option(name: .shortAndLong, help: "Specifies the file extension to be replaced.") var ext: String?
-    @Option(name: .shortAndLong, help: "Specifies the new file extension.") var newExtension: String?
+    @Option(name: .shortAndLong, help: "Specifies the file extension to be replaced.") var ext: String
+    @Option(name: .shortAndLong, help: "Specifies the new file extension.") var newExtension: String
     @Flag(name: .shortAndLong, help: "recursively change extensions.") var recursive: Bool
     @Flag(name: .shortAndLong, help: "display status while renaming files.") var verbose: Bool
 
@@ -21,12 +21,20 @@ struct Rext: ParsableCommand {
         return URL(fileURLWithPath: dir.standardizingPath)
     } // end calculated property
 
-    // the replace function move files with a particular extension to the new extension
-    func replace(extension ext: String?, with newExt: String?, in directory: URL, recursive: Bool = false) {
-        guard let ext = ext, let newExt = newExt else {
-            print("Please provide both extension and new extension.\r\n\r\nTo find out how, issue command again with either -h or --help flags.")
-            return
+    mutating func validate() throws {
+        guard !ext.isEmpty && !newExtension.isEmpty else {
+            if ext.isEmpty {
+                throw ValidationError(RunTimeError.missingExtension)
+            } else if newExtension.isEmpty {
+                throw ValidationError(RunTimeError.missReplacement)
+            } else {
+                throw ValidationError(RunTimeError.missingExtensions)
+            }
         }
+    }
+
+    // the replace function move files with a particular extension to the new extension
+    func replace(extension ext: String, with newExt: String, in directory: URL, recursive: Bool = false) {
 
         let FILE_MANAGER = FileManager.default
 
@@ -87,7 +95,7 @@ struct Rext: ParsableCommand {
     } // end function
 
     // function that is run when command is called
-    func run() {
+    func run() throws {
         replace(extension: ext, with: newExtension, in: directory, recursive: recursive)        
     }
 }
