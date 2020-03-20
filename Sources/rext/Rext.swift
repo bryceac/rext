@@ -8,8 +8,8 @@ struct Rext: ParsableCommand {
     
     // specify options, flags, and arguments, allowing use of short and long flags on each option and flag
     @Option(name: .shortAndLong, default: ".", help: "Specifies the directory to go through.") var dir: String
-    @Option(name: .shortAndLong, default: "", help: "Specifies the file extension to be replaced.") var ext: String
-    @Option(name: .shortAndLong, default: "", help: "Specifies the new file extension.") var newExtension: String
+    @Argument() var ext: String
+    @Argument() var newExtension: String
     @Flag(name: .shortAndLong, help: "recursively change extensions.") var recursive: Bool
     @Flag(name: .shortAndLong, help: "display status while renaming files.") var verbose: Bool
 
