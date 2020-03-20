@@ -1,6 +1,6 @@
 import Foundation
 
-enum RunTimeError: Error, CustomStringConvertible {
+enum RuntimeError: Error, CustomStringConvertible {
     case missingExtensions, missingExtension, missingReplacement
 
     var description: String {

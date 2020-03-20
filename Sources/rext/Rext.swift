@@ -24,11 +24,11 @@ struct Rext: ParsableCommand {
     mutating func validate() throws {
         guard !ext.isEmpty && !newExtension.isEmpty else {
             if ext.isEmpty && !newExtension.isEmpty {
-                throw ValidationError("\(RunTimeError.missingExtension)")
+                throw ValidationError("\(RuntimeError.missingExtension)")
             } else if newExtension.isEmpty && !ext.isEmpty {
-                throw ValidationError("\(RunTimeError.missingReplacement)")
+                throw ValidationError("\(RuntimeError.missingReplacement)")
             } else {
-                throw ValidationError("\(RunTimeError.missingExtensions)")
+                throw ValidationError("\(RuntimeError.missingExtensions)")
             }
         }
     }
