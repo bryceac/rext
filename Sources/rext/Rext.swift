@@ -24,12 +24,12 @@ struct Rext: ParsableCommand {
     // the replace function move files with a particular extension to the new extension
     func replace(extension ext: String?, with newExt: String?, in directory: URL, recursive: Bool = false) throws {
         guard let ext = ext, let newExt = newExt {
-            if let _ = ext {
+            if let _ = self.ext {
             } else {
                 throw RunTimeError.missingExtension
             }
 
-            if let _ = newExt {
+            if let _ = self.newExt {
             } else {
                 throw RunTimeError.missingReplacement
             }
