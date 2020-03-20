@@ -8,8 +8,8 @@ struct Rext: ParsableCommand {
     
     // specify options and flags, allowing use of short and long flags on each option and flag
     @Option(name: .shortAndLong, default: ".", help: "Specifies the directory to go through.") var dir: String
-    @Option(name: .shortAndLong, help: "Specifies the file extension to be replaced.") var ext: String
-    @Option(name: .shortAndLong, help: "Specifies the new file extension.") var newExtension: String
+    @Option(name: .shortAndLong, help: "Specifies the file extension to be replaced.") var ext: String?
+    @Option(name: .shortAndLong, help: "Specifies the new file extension.") var newExtension: String?
     @Flag(name: .shortAndLong, help: "recursively change extensions.") var recursive: Bool
     @Flag(name: .shortAndLong, help: "display status while renaming files.") var verbose: Bool
 
@@ -21,20 +21,21 @@ struct Rext: ParsableCommand {
         return URL(fileURLWithPath: dir.standardizingPath)
     } // end calculated property
 
-    mutating func validate() throws {
-        guard !ext.isEmpty && !newExtension.isEmpty else {
-            if ext.isEmpty {
-                throw ValidationError("\(RunTimeError.missingExtension)")
-            } else if newExtension.isEmpty {
-                throw ValidationError("\(RunTimeError.missingReplacement)")
-            } else {
-                throw ValidationError("\(RunTimeError.missingExtensions)")
-            }
-        }
-    }
-
     // the replace function move files with a particular extension to the new extension
-    func replace(extension ext: String, with newExt: String, in directory: URL, recursive: Bool = false) {
+    func replace(extension ext: String?, with newExt: String?, in directory: URL, recursive: Bool = false) throws {
+        guard let ext = ext, let newExt = newExt {
+            if let _ = ext {
+            } else {
+                throw RunTimeError.missingExtension
+            }
+
+            if let _ = newExt {
+            } else {
+                throws RunTimeError.missReplacement
+            }
+
+            throw RunTimeError.missingExtensions
+        }
 
         let FILE_MANAGER = FileManager.default
 
@@ -96,6 +97,6 @@ struct Rext: ParsableCommand {
 
     // function that is run when command is called
     func run() throws {
-        replace(extension: ext, with: newExtension, in: directory, recursive: recursive)        
+        try replace(extension: ext, with: newExtension, in: directory, recursive: recursive)        
     }
 }
