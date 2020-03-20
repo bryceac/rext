@@ -31,7 +31,7 @@ struct Rext: ParsableCommand {
 
             if let _ = newExt {
             } else {
-                throws RunTimeError.missReplacement
+                throw RunTimeError.missReplacement
             }
 
             throw RunTimeError.missingExtensions
