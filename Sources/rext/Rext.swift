@@ -73,7 +73,7 @@ struct Rext: ParsableCommand {
                 if item.hasDirectoryPath {
 
                     // call a new instance of self if item is a directory
-                    replace(extension: ext, with: newExt, in: item, recursive: recursive)
+                    try? replace(extension: ext, with: newExt, in: item, recursive: recursive)
                 } else {
                     guard item.pathExtension == ext else { continue }
 
