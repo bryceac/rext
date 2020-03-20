@@ -8,8 +8,8 @@ struct Rext: ParsableCommand {
     
     // specify options and flags, allowing use of short and long flags on each option and flag
     @Option(name: .shortAndLong, default: ".", help: "Specifies the directory to go through.") var dir: String
-    @Option(name: .shortAndLong, help: "Specifies the file extension to be replaced.") var ext: String?
-    @Option(name: .shortAndLong, help: "Specifies the new file extension.") var newExtension: String?
+    @Option(name: .shortAndLong, help: "Specifies the file extension to be replaced.") var ext: String
+    @Option(name: .shortAndLong, help: "Specifies the new file extension.") var newExtension: String
     @Flag(name: .shortAndLong, help: "recursively change extensions.") var recursive: Bool
     @Flag(name: .shortAndLong, help: "display status while renaming files.") var verbose: Bool
 
@@ -21,22 +21,21 @@ struct Rext: ParsableCommand {
         return URL(fileURLWithPath: dir.standardizingPath)
     } // end calculated property
 
-    // the replace function move files with a particular extension to the new extension
-    func replace(extension ext: String?, with newExt: String?, in directory: URL, recursive: Bool = false) throws {
-        guard let ext = ext, let newExt = newExt {
-            if let _ = self.ext {
+    mutating func validate() throws {
+        guard !ext.isEmpty && !newExtension.isEmpty else {
+            if ext.isEmpty {
+                throw RunTimeError.missExtension
+            } else if newExtension.isEmpty {
+                throw RunTimeError.missReplacement
             } else {
-                throw RunTimeError.missingExtension
+                throw RunTimeError.missingExtensions
             }
-
-            if let _ = self.newExt {
-            } else {
-                throw RunTimeError.missingReplacement
-            }
-
-            throw RunTimeError.missingExtensions
         }
+    }
 
+    // the replace function move files with a particular extension to the new extension
+    func replace(extension ext: String?, with newExt: String?, in directory: URL, recursive: Bool = false) {
+        
         let FILE_MANAGER = FileManager.default
 
         // attempt to grab list of files and folders
@@ -73,7 +72,7 @@ struct Rext: ParsableCommand {
                 if item.hasDirectoryPath {
 
                     // call a new instance of self if item is a directory
-                    try? replace(extension: ext, with: newExt, in: item, recursive: recursive)
+                    replace(extension: ext, with: newExt, in: item, recursive: recursive)
                 } else {
                     guard item.pathExtension == ext else { continue }
 
