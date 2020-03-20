@@ -17,8 +17,8 @@ struct Rext: ParsableCommand {
     // calculated property, to generate directory path
     var directory: URL {
         
-        // return specified path, subsituting tilde for User directory
-        return URL(fileURLWithPath: dir.expandingTildeInPath)
+        // return specified path, subsituting shorthands for proper directories
+        return URL(fileURLWithPath: dir.standardizingPath)
     } // end calculated property
 
     // the replace function move files with a particular extension to the new extension

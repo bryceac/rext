@@ -42,7 +42,7 @@ Everything can be specified at once like this:
 rext -denr "/path/to/directory" php txt
 </pre>
 
-This will go through the specified directory and all subdirectories and do the same renaming job as above. Quotes must are not necessary around the the directory path, as of 3/2/2020, both '''~''' and '''.''' shorthands are supported, though I do not think '''..''' will work.
+This will go through the specified directory and all subdirectories and do the same renaming job as above. Quotesare not necessary around the the directory path, as of 3/2/2020, and most shorthands (e.g. ".", "~", and "..") are supported as of 3/19/2020.
 
 If you use the usual '''-h''' or '''--help''' flags, you can get a brief overview when needed.
 
