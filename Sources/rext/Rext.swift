@@ -21,18 +21,6 @@ struct Rext: ParsableCommand {
         return URL(fileURLWithPath: dir.standardizingPath)
     } // end calculated property
 
-    mutating func validate() throws {
-        guard !ext.isEmpty && !newExtension.isEmpty else {
-            if ext.isEmpty && !newExtension.isEmpty {
-                throw ValidationError("\(RuntimeError.missingExtension)")
-            } else if newExtension.isEmpty && !ext.isEmpty {
-                throw ValidationError("\(RuntimeError.missingReplacement)")
-            } else {
-                throw ValidationError("\(RuntimeError.missingExtensions)")
-            }
-        }
-    }
-
     // the replace function move files with a particular extension to the new extension
     func replace(extension ext: String, with newExt: String, in directory: URL, recursive: Bool = false) {
         
