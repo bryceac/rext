@@ -26,7 +26,7 @@ struct Rext: ParsableCommand {
             if ext.isEmpty {
                 throw RunTimeError.missExtension
             } else if newExtension.isEmpty {
-                throw RunTimeError.missReplacement
+                throw RunTimeError.missingReplacement
             } else {
                 throw RunTimeError.missingExtensions
             }
