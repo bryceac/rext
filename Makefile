@@ -1,8 +1,13 @@
 prefix ?= /usr/local
 bindir = $(prefix)/bin
+SYS := $(shell $(CC) -dumpmachine)
 
 build:
-	swift build -c release --disable-sandbox
+	ifneq (, $(findstring linux, $(SYS)))
+		swift build -c release
+	else
+		swift build -c release --disable-sandbox
+	endif
 install: build
 	install ".build/release/rext" "$(bindir)"
 uninstall:
