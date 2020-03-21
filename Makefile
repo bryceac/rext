@@ -16,4 +16,4 @@ install: build
 uninstall:
 	rm -rf "$(bindir)/rext"
 clean:
-	rm -rf .build
+	swift build --clean
