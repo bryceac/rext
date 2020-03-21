@@ -12,7 +12,7 @@ endif
 build:
 	swift build $(SWIFT_FLAGS)
 install: build
-	install ".build/release/rext" "$(bindir)"
+	install -D ".build/release/rext" "$(bindir)"
 uninstall:
 	rm -rf "$(bindir)/rext"
 clean:
