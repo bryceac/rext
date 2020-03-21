@@ -1,15 +1,16 @@
 prefix ?= /usr/local
 bindir = $(prefix)/bin
 SYS := $(shell $(CC) -dumpmachine)
-SWIFTC_FLAGS =
+SWIFT_FLAGS =
 
 ifneq (, $(findstring linux, $(SYS)))
+SWIFT_FLAGS = -c release
 else
-SWIFTC_FLAGS = --disable-sandbox
+SWIFT_FLAGS = -c release --disable-sandbox
 endif
 
 build:
-	swift build -c release $(SWIFTC_FLAGS)
+	swift build $(SWIFT_FLAGS)
 install: build
 	install ".build/release/rext" "$(bindir)"
 uninstall:
