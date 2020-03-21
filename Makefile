@@ -1,9 +1,9 @@
 prefix ?= /usr/local
 bindir = $(prefix)/bin
-SYS := $(shell $(CC) -dumpmachine)
+SYS := $(shell uname)
 
 build:
-	ifneq (, $(findstring linux, $(SYS)))
+	ifeq ($(SYS), Linux)
 		swift build -c release
 	else
 		swift build -c release --disable-sandbox
