@@ -24,6 +24,14 @@ make install
 
 The binary will be installed in /usr/local/bin and will be immediately available if your PATH environment variable includes that directory.
 
+===Uninstallation===
+
+To uninstall the binary, if installed via source, run the following as root/superuser:
+
+<pre>
+make uninstall
+</pre>
+
 ===Usage===
 
 To use the program, call it and tell it which extensions to look for and replace with like this:
