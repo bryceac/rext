@@ -17,3 +17,4 @@ uninstall:
 	rm -rf "$(bindir)/rext"
 clean:
 	rm -rf .build
+.PHONY: build install uninstall clean
