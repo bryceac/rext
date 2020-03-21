@@ -1,5 +1,4 @@
 prefix ?= /usr/local
-SWIFT_EXEC := $(shell which swift)
 bindir = $(prefix)/bin
 SYS := $(shell $(CC) -dumpmachine)
 SWIFT_FLAGS =
@@ -11,8 +10,8 @@ SWIFT_FLAGS = -c release --disable-sandbox
 endif
 
 build:
-	$(SWIFT_EXEC) build $(SWIFT_FLAGS)
-install: build
+	swift build $(SWIFT_FLAGS)
+install:
 	install ".build/release/rext" "$(bindir)"
 uninstall:
 	rm -rf "$(bindir)/rext"
