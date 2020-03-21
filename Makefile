@@ -3,7 +3,7 @@ bindir = $(prefix)/bin
 SYS := $(shell $(CC) -dumpmachine)
 
 build:
-	ifneq (, $(findstring linux, $(SYS)))
+	ifneq ($(findstring linux, $(SYS)), linux)
 		swift build -c release
 	else
 		swift build -c release --disable-sandbox
