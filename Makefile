@@ -11,7 +11,7 @@ endif
 
 build:
 	swift build $(SWIFT_FLAGS)
-install:
+install: build
 	install ".build/release/rext" "$(bindir)"
 uninstall:
 	rm -rf "$(bindir)/rext"
