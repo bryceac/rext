@@ -18,7 +18,7 @@ struct Rext: ParsableCommand {
     var directory: URL {
         
         // return specified path, subsituting shorthands for proper directories
-        return URL(fileURLWithPath: dir.standardizingPath)
+        return URL(fileURLWithPath: dir).standardizedFileURL
     } // end calculated property
 
     // the replace function move files with a particular extension to the new extension
