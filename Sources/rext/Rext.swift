@@ -18,7 +18,7 @@ struct Rext: ParsableCommand {
     var directory: URL {
         
         // return specified path, subsituting shorthands for proper directories
-        return URL(fileURLWithPath: dir)
+        return URL(fileURLWithPath: dir).standardizedFileURL
     } // end calculated property
 
     // the replace function move files with a particular extension to the new extension
@@ -27,7 +27,7 @@ struct Rext: ParsableCommand {
         let FILE_MANAGER = FileManager.default
 
         // attempt to grab list of files and folders
-        guard let CONTENTS = try? FILE_MANAGER.contentsOfDirectory(at: directory.standardizingPath, includingPropertiesForKeys: nil) else {
+        guard let CONTENTS = try? FILE_MANAGER.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil) else {
             fatalError("cannot read directory!")
         }
 
