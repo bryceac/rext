@@ -13,6 +13,8 @@ build:
 	swift build $(SWIFT_FLAGS)
 install: build
 ifneq (, $(findstring darwin, $(SYS)))
+	test ! -d $(bindir) && mkdir -p $(bindir)
+
 	install ".build/release/rext" "$(bindir)/rext"
 else
 	install -D ".build/release/rext" "$(bindir)/rext"
