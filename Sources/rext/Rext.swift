@@ -10,8 +10,9 @@ struct Rext: ParsableCommand {
     @Option(name: .shortAndLong, default: ".", help: "Specifies the directory to go through.") var dir: String
     @Argument() var ext: String
     @Argument() var newExtension: String
-    @Flag(name: .shortAndLong, help: "recursively change extensions.") var recursive: Bool
-    @Flag(name: .shortAndLong, help: "display status while renaming files.") var verbose: Bool
+    @Flag(name: .shortAndLong, help: "recursively change extensions.") var recursive: Bool = false
+    @Flag(name: .shortAndLong, help: "display status while renaming files.") var verbose: Bool = false
+    @Flag(name: .shortAndLong, help: "include hidden files in operation") var includeHidden: Bool = false
 
     
     // calculated property, to generate directory path
