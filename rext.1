@@ -1,0 +1,84 @@
+.\" Manpage for rext.
+.\" Contact tonyhawk2100@gmail.com to correct errors or typos.
+.TH man 1 "17 September 2020" "0.1.0" "rext man page"
+.SH NAME
+
+rext \- easily change the file extension of files
+
+.SH SYNOPSIS
+
+rext [--dir <dir>] [FLAGS] [EXTENSION] [NEW EXTENSION]
+
+.SH DESCRIPTION
+
+rext is a commandline utility that 
+can allow one to easily 
+change file extensions.
+
+While this can be achieved by 
+various other means, such as mv(1) and find(1),
+this allows things to be specified by simply
+providing the extension to change and 
+the extension desired, as well as directory,
+if in a different folder.
+
+Normally, operations like these 
+should not be taken, as the file can become unreadable.
+
+This program does not provide any safe guards 
+for such scenarios, so you MUST be absolutely
+certain that the extensions are for the same format
+in cases like that of images files and video files.
+
+For example, MPEG 4 videos should be either 
+M4V, MP4, and possibly MOV, while MPEG 4 audio 
+should be either M4A, AAC, or M4P.
+
+For those familiar with DRM, due to the mentioning of
+M4V and M4P, the latter of which is no longer in the wild,
+This program does not remove DRM, so it is more useful 
+to help denote which files are free of DRM.
+
+.SH EXAMPLES
+
+Example 1 Converting TXT files to HTML file
+
+The following command looks for any files with a TXT extension 
+and replaces it with the HTML extension. It also only performs 
+the changes within the current direct, not an subdirectories.
+
+    $ rext txt html
+
+Example 2 Converting PHP to TXT recursively
+
+The following command does something similar to above, 
+but will also affect files in any subdirectories.
+
+    $ rext -r php txt
+
+Example 3 Change extensions in a particular directory
+
+The following command does the same thing as 
+the first example, but specifies a directory.
+
+    $ rext -d ~/Documents txt html
+
+.SH OPTIONS
+
+.BR \-d ", " \-\-dir " " \fI<dir>\fR
+Specifies the directory to traverse.
+Default is the 
+current working directory.
+
+.BR \-r ", " \-\-recursive
+performs given operation recursively.
+
+.BR \-v ", " \-\-verbose
+enable verbose mode.
+
+.BR \-h ", " \-\-help
+displays command's help text and exits.
+
+.SH AUTHOR
+
+Bryce Campbell
