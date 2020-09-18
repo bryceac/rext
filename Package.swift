@@ -19,7 +19,7 @@ let package = Package(
         .target(
             name: "rext",
             dependencies: [
-                .product("ArgumentParser", package: "swift-argument-parser")
+                .product(name: "ArgumentParser", package: "swift-argument-parser")
             ]),
         .testTarget(
             name: "rextTests",
