@@ -34,6 +34,8 @@ struct Rext: ParsableCommand {
             fatalError("cannot read directory!")
         }
 
+        print(CONTENTS.count)
+
         // check if user wanted recursion and execute appropriate code
         if !recursive {
             for item in CONTENTS {
