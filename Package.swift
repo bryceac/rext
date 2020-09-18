@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "rext",
     platforms: [
-        .macOS(.v10_11)
+        .macOS(.v10_15)
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
