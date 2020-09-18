@@ -28,7 +28,7 @@ struct Rext: ParsableCommand {
         let FILE_MANAGER = FileManager.default
 
         // attempt to grab list of files and folders
-        guard let CONTENTS = !includeHidden ? try? FILE_MANAGER.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil) : try?  FILE_MANAGER.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles]) else {
+        guard let CONTENTS = !includeHidden ? try? FILE_MANAGER.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles]) : try?  FILE_MANAGER.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil) else {
             fatalError("cannot read directory!")
         }
 
