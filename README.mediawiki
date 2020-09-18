@@ -2,7 +2,7 @@
 
 '''Description:''' Program that allows one to easily change the file extension of files within a specified directory.
 
-'''Version:''' 0.1
+'''Version:''' 0.2
 
 '''Author:''' Bryce C.
 
