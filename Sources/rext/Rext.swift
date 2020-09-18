@@ -12,7 +12,7 @@ struct Rext: ParsableCommand {
     @Argument() var newExtension: String
     @Flag(name: .shortAndLong, help: "recursively change extensions.") var recursive: Bool = false
     @Flag(name: .shortAndLong, help: "display status while renaming files.") var verbose: Bool = false
-    @Flag(name: .shortAndLong, help: "include hidden files in operation") var includeHidden: Bool = false
+    @Flag(name: [.customShort("H"), .long], help: "include hidden files in operation") var includeHidden: Bool = false
 
     
     // calculated property, to generate directory path
@@ -28,7 +28,7 @@ struct Rext: ParsableCommand {
         let FILE_MANAGER = FileManager.default
 
         // attempt to grab list of files and folders
-        guard let CONTENTS = try? FILE_MANAGER.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil) else {
+        guard let CONTENTS = !includeHidden ? try? FILE_MANAGER.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil) : try?  FILE_MANAGER.contentsOfDirectory(at: directory, includingPropertiesForKeys: ni, options: [.skipsHiddenFiles]) else {
             fatalError("cannot read directory!")
         }
 
