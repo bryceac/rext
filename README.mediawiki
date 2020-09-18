@@ -12,6 +12,26 @@
 
 This program has only been tested on Ubuntu 18.04 with Swift version 5.1.4, though it should work on any platform that can compile and run Swift, with Mac and Ubuntu working without troubles.
 
+===Release History===
+
+<ul>
+<li>
+<dl>
+<dt stype="font-weight:bold">0.2</dt>
+<dd>
+<p>Update code and add ability to exclude hidden files via new flag.</p>
+<p>Released September 18, 2020</p>
+</dd>
+</dl>
+</li>
+<li>
+<dl>
+<dt style="font-weight:bold">0.1</dt>
+<dd>Initial release</dd>
+</dl>
+</li>
+</ul>
+
 ===Installation===
 
 To be able to install this application, download the zip file or clone this repository.
